@@ -7,7 +7,7 @@ export const fetchEvents = createAsyncThunk('events/fetchEvents', async (_, thun
   try {
     const response = await axios.get('/events');
     console.log(response.data);
-    return response.data.data;
+    return response.data.data.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

@@ -25,6 +25,9 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
-  cursor: pointer;
   color: var(--main-font-color);
+}
+
+.paragraph {
+  cursor: pointer;
 }
