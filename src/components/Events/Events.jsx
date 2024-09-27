@@ -1,7 +1,5 @@
-import React from 'react';
-
-function Events(props) {
-  return <div></div>;
+function Events() {
+  return <ul></ul>;
 }
 
 export default Events;

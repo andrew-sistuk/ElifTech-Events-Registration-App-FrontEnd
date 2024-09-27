@@ -1,6 +1,4 @@
-import React from 'react';
-
-function Event(props) {
+function Event() {
   return <div></div>;
 }
 

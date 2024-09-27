@@ -1,6 +1,4 @@
-import React from 'react';
-
-function NotFound(props) {
+function NotFound() {
   return <div>test</div>;
 }
 
