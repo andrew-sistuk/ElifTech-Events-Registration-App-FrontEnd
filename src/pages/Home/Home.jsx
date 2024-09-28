@@ -12,7 +12,6 @@ import Message from '../../components/Message/Message.jsx';
 function Home() {
   const dispatch = useDispatch();
   const loading = useSelector(selectEventsLoading);
-  // const error = useSelector(selectEventsLoading);
 
   useEffect(() => {
     dispatch(fetchEvents());
