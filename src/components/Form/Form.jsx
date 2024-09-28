@@ -19,6 +19,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 //!component
 //!
 import * as yup from 'yup';
+// import { useParams } from 'react-router-dom';
 //!
 //!helpers
 //!
@@ -37,6 +38,7 @@ import * as yup from 'yup';
 
 function BookForm() {
   const datePickerRef = useRef(null);
+  // const { id } = useParams();
 
   const schema = yup.object().shape({
     name: yup
@@ -45,7 +47,7 @@ function BookForm() {
       .min(3, 'The name must contain at least 3 characters'),
     email: yup.string().required('Email is required').email('Enter a valid email ***@***.**'),
     // date: yup.date(),
-    bookDate: yup.date().required('Date is required').typeError('Please enter a valid date'),
+    birthDate: yup.date().required('Date is required').typeError('Please enter a valid date'),
   });
   const {
     control,
@@ -62,7 +64,7 @@ function BookForm() {
   }
 
   function onError(errors) {
-    if (errors.bookDate) {
+    if (errors.birthDate) {
       datePickerRef.current?.focus();
     }
   }
@@ -112,7 +114,7 @@ function BookForm() {
         data-tooltip-id="my-tooltip-date"
       >
         <Controller
-          name="bookDate"
+          name="birthDate"
           control={control}
           defaultValue={null}
           render={({ field }) => (
@@ -131,9 +133,9 @@ function BookForm() {
       <ReactTooltip
         id="my-tooltip-date"
         place="top-end"
-        variant={errors.bookDate ? 'error' : 'dark'}
+        variant={errors.birthDate ? 'error' : 'dark'}
         content={
-          errors.bookDate ? errors.bookDate.message : 'You must write your real date of birth'
+          errors.birthDate ? errors.birthDate.message : 'You must write your real date of birth'
         }
       />
       <textarea

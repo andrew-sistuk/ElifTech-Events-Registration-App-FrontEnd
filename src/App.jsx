@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { lazy, Suspense } from 'react';
 import Loader from './components/Loader/Loader.jsx';
+// import { useSelector } from 'react-redux';
+// import { selectEventsLoading } from './myRedux/events/selectors.js';
 
 const Header = lazy(() => import('./components/Header/Header'));
 const Home = lazy(() => import('./pages/Home/Home'));

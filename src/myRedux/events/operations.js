@@ -3,11 +3,10 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://eliftech-events-registration-app-backend-7vlv.onrender.com';
 
-export const fetchEvents = createAsyncThunk('events/fetchEvents', async (_, thunkAPI) => {
+export const fetchEvents = createAsyncThunk('events/fetchEvents', async (page, thunkAPI) => {
   try {
-    const response = await axios.get('/events');
-    console.log(response.data);
-    return response.data.data.data;
+    const response = await axios.get(`/events?page=${page}`);
+    return response.data.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

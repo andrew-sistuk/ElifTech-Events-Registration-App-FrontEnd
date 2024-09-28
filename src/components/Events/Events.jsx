@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 
 function Events() {
   const events = useSelector(selectEvents);
-  console.log(events);
+
   return (
     <ul className={css.events}>
       {events.map(({ _id, title, organizer, description, event_date }) => (

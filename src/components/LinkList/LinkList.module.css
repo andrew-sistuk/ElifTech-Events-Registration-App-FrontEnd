@@ -1,0 +1,13 @@
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.item {
+  font-family: inherit;
+  background-color: transparent;
+  outline: transparent;
+  border: none;
+  color: var(--second-color);
+}

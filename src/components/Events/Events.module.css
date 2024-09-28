@@ -2,7 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 20px;
 }
+
 .event {
   display: flex;
   flex-direction: column;
