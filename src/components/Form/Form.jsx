@@ -29,10 +29,8 @@ function BookForm() {
       .min(3, 'The name must contain at least 3 characters'),
     email: yup.string().required('Email is required').email('Enter a valid email ***@***.**'),
     birthDate: yup.date().required('Date is required').typeError('Please enter a valid date'),
-    info: yup
-      .string()
-      .oneOf(WHERE_MEMBER_HEAR, 'Invalid selection')
-      .required('This field is required'),
+    info: yup.string().oneOf(WHERE_MEMBER_HEAR, 'Invalid selection'),
+    comment: yup.string(),
   });
   const {
     control,
@@ -133,6 +131,7 @@ function BookForm() {
       <div className={css['container-info']} data-tooltip-id="my-tooltip-info">
         <label className={css['label-info']} htmlFor="social_media">
           <input
+            checked
             className={css.info}
             type="radio"
             name="info"

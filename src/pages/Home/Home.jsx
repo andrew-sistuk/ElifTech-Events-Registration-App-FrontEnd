@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { selectEventsLoading } from '../../myRedux/events/selectors.js';
 import Loader from '../../components/Loader/Loader.jsx';
 import LinkList from '../../components/LinkList/LinkList.jsx';
+import Message from '../../components/Message/Message.jsx';
 
 function Home() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function Home() {
       <h1 className="visually-hidden">Main Events</h1>
       <Events />
       <LinkList />
+      <Message />
       <Loader loading={loading} />
     </main>
   );

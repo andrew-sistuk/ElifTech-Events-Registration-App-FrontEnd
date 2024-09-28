@@ -1,14 +1,17 @@
 import css from './Participants.module.css';
 import Members from '../../components/Members/Members.jsx';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchEvent } from '../../myRedux/events/operations.js';
 import { useParams } from 'react-router-dom';
 import clsx from 'clsx';
+import Message from '../../components/Message/Message.jsx';
+import Loader from '../../components/Loader/Loader.jsx';
+import { selectEventsLoading } from '../../myRedux/events/selectors.js';
 
 function Participants() {
+  const loading = useSelector(selectEventsLoading);
   const { eventId } = useParams();
-  console.log(eventId);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,6 +22,8 @@ function Participants() {
     <section className={clsx(css.participants, 'container')}>
       <h2 className="visually-hidden">Participants</h2>
       <Members />
+      <Message />
+      <Loader loading={loading} />
     </section>
   );
 }
