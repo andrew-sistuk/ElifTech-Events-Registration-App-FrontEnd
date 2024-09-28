@@ -19,6 +19,7 @@ function Home() {
 
   return (
     <main className={clsx(css.main, 'container')}>
+      <h1 className="visually-hidden">Main Events</h1>
       <Events />
       <LinkList />
       <Loader loading={loading} />

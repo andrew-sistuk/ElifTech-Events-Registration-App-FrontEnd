@@ -1,0 +1,11 @@
+.member {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc((100% - 20px * 3) / 4);
+  height: 190px;
+  padding: 25px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px #cff09e solid;
+}

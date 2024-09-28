@@ -19,8 +19,8 @@ function App() {
         <Route path="/" element={<Header />}>
           <Route index element={<Navigate to="/events" replace />} />
           <Route path="/events" element={<Home />} />
-          <Route path="/events/:id/register" element={<Registration />} />
-          <Route path="/events/:id/view" element={<Participants />} />
+          <Route path="/events/:eventId/register" element={<Registration />} />
+          <Route path="/events/:eventId/view" element={<Participants />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchEvent, fetchEvents } from './operations.js';
 
 const handlePending = state => {
-  state.item = [];
+  state.items = [];
   state.page = 1;
   state.totalPages = 0;
   state.hasNextPage = false;
@@ -12,7 +12,7 @@ const handlePending = state => {
 };
 
 const handleRejected = (state, action) => {
-  state.item = [];
+  state.items = [];
   state.page = 1;
   state.totalPages = 0;
   state.hasNextPage = false;
@@ -25,7 +25,7 @@ const eventsSlice = createSlice({
   name: 'events',
   initialState: {
     items: [],
-    item: {},
+    members: [],
     page: 1,
     totalPages: 0,
     hasNextPage: false,
@@ -52,7 +52,7 @@ const eventsSlice = createSlice({
       .addCase(fetchEvent.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.item = action.payload;
+        state.members = action.payload;
       })
       .addCase(fetchEvent.rejected, handleRejected);
   },

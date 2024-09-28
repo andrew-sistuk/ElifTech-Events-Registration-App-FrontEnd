@@ -46,7 +46,6 @@ function BookForm() {
       .required('Name is required')
       .min(3, 'The name must contain at least 3 characters'),
     email: yup.string().required('Email is required').email('Enter a valid email ***@***.**'),
-    // date: yup.date(),
     birthDate: yup.date().required('Date is required').typeError('Please enter a valid date'),
   });
   const {
