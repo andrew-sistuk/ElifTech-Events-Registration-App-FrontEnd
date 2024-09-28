@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchEvent, fetchEvents } from './operations.js';
+import { fetchEvent, fetchEvents, registerMember } from './operations.js';
+import { toast } from 'react-toastify';
 
 const handlePending = state => {
   state.items = [];
@@ -8,7 +9,7 @@ const handlePending = state => {
   state.hasNextPage = false;
   state.hasPreviousPage = false;
   state.loading = true;
-  state.error = null;
+  state.nameUser = null;
 };
 
 const handleRejected = (state, action) => {
@@ -17,8 +18,9 @@ const handleRejected = (state, action) => {
   state.totalPages = 0;
   state.hasNextPage = false;
   state.hasPreviousPage = false;
+  state.nameUser = null;
   state.loading = false;
-  state.error = action.payload;
+  toast(`${action.payload}!`);
 };
 
 const eventsSlice = createSlice({
@@ -26,19 +28,19 @@ const eventsSlice = createSlice({
   initialState: {
     items: [],
     members: [],
+    nameUser: null,
     page: 1,
     totalPages: 0,
     hasNextPage: false,
     hasPreviousPage: false,
     loading: false,
-    error: null,
   },
   extraReducers: builder => {
     builder
       .addCase(fetchEvents.pending, handlePending)
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = null;
+        state.nameUser = null;
         state.items = action.payload.data;
 
         state.page = action.payload.page;
@@ -51,10 +53,17 @@ const eventsSlice = createSlice({
       .addCase(fetchEvent.pending, handlePending)
       .addCase(fetchEvent.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = null;
+        state.nameUser = null;
         state.members = action.payload;
       })
-      .addCase(fetchEvent.rejected, handleRejected);
+      .addCase(fetchEvent.rejected, handleRejected)
+
+      .addCase(registerMember.pending, handlePending)
+      .addCase(registerMember.fulfilled, (state, action) => {
+        state.loading = false;
+        toast(`Thank you, ${action.payload.name}!`);
+      })
+      .addCase(registerMember.rejected, handleRejected);
   },
 });
 

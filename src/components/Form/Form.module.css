@@ -59,13 +59,31 @@
   margin-bottom: 24px;
 }
 
+.container-info {
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.container-info,
+.label-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.info {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--main-color);
+}
+
 .button {
   display: inline-block;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.005em;
-  padding: 16px 60px;
+  padding: 10px 50px;
   border-radius: 200px;
   color: var(--main-font-color);
   background-color: var(--main-color);

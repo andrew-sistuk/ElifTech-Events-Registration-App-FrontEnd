@@ -1,44 +1,26 @@
-//!
-//!react and libraries
-//!
-// import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { toast } from 'react-toastify';
 import { Controller, useForm } from 'react-hook-form';
 import { useRef } from 'react';
-//!
-//!styles
-//!
 import css from './Form.module.css';
-import './Form.css';
 import 'react-datepicker/dist/react-datepicker.css';
-//!
-//!component
-//!
+import './Form.css';
 import * as yup from 'yup';
-// import { useParams } from 'react-router-dom';
-//!
-//!helpers
-//!
-//!
-//!helpers
-//!
-//!
-//!helpers
-//!
-//!
-//!assets
-//!
-//!
-//!myRedux
-//!
+import { useParams } from 'react-router-dom';
+import { WHERE_MEMBER_HEAR } from '../../helpers/constants/info.jsx';
+import { useDispatch } from 'react-redux';
+import { registerMember } from '../../myRedux/events/operations.js';
 
 function BookForm() {
   const datePickerRef = useRef(null);
-  // const { id } = useParams();
+  const { eventId } = useParams();
+  const params = useParams();
+
+  console.log(params);
+
+  const dispatch = useDispatch();
 
   const schema = yup.object().shape({
     name: yup
@@ -47,19 +29,30 @@ function BookForm() {
       .min(3, 'The name must contain at least 3 characters'),
     email: yup.string().required('Email is required').email('Enter a valid email ***@***.**'),
     birthDate: yup.date().required('Date is required').typeError('Please enter a valid date'),
+    info: yup
+      .string()
+      .oneOf(WHERE_MEMBER_HEAR, 'Invalid selection')
+      .required('This field is required'),
   });
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
-    console.log('Form Data:', data); // Перевірка даних форми
-    toast('Event sent!');
+  function onSubmit(newMember) {
+    console.log('Form Data:', newMember);
+    dispatch(
+      registerMember({
+        eventId,
+        newMember,
+      })
+    );
+    reset();
   }
 
   function onError(errors) {
@@ -137,10 +130,52 @@ function BookForm() {
           errors.birthDate ? errors.birthDate.message : 'You must write your real date of birth'
         }
       />
+      <div className={css['container-info']} data-tooltip-id="my-tooltip-info">
+        <label className={css['label-info']} htmlFor="social_media">
+          <input
+            className={css.info}
+            type="radio"
+            name="info"
+            id="social_media"
+            value="social_media"
+            {...register('info')}
+          />
+          <p>Social media</p>
+        </label>
+        <label className={css['label-info']} htmlFor="friends">
+          <input
+            className={css.info}
+            type="radio"
+            name="info"
+            id="friends"
+            value="friends"
+            {...register('info')}
+          />
+          <p>Friends</p>
+        </label>
+        <label className={css['label-info']} htmlFor="myself">
+          <input
+            className={css.info}
+            type="radio"
+            name="info"
+            id="myself"
+            value="myself"
+            {...register('info')}
+          />
+          <p>Found myself</p>
+        </label>
+      </div>
+      <ReactTooltip
+        id="my-tooltip-info"
+        place="top-end"
+        variant={errors.birthDate ? 'error' : 'dark'}
+        content={errors.info ? errors.info.message : 'This information makes us better. Thanks!'}
+      />
       <textarea
         className={clsx(css.field, css.comment)}
         placeholder="Comment"
         data-tooltip-id="my-tooltip-comment"
+        {...register('comment')}
       ></textarea>
       <ReactTooltip
         id="my-tooltip-comment"
