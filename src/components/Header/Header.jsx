@@ -7,7 +7,7 @@ function Header() {
     <>
       <header className={clsx(css.header, 'container')}>
         <Link className={css.home} to="/">
-          <img className={css.logo} src="/public/favicon.svg" alt="logo" />
+          <img className={css.logo} src="/favicon.svg" alt="logo" />
           <p className={css.paragraph}>Main Events</p>
         </Link>
       </header>
