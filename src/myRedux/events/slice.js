@@ -18,7 +18,6 @@ const handleRejected = (state, action) => {
   state.totalPages = 0;
   state.hasNextPage = false;
   state.hasPreviousPage = false;
-  state.nameUser = null;
   state.loading = false;
   toast(`${action.payload}!`);
 };
@@ -28,19 +27,22 @@ const eventsSlice = createSlice({
   initialState: {
     items: [],
     members: [],
-    nameUser: null,
     page: 1,
     totalPages: 0,
     hasNextPage: false,
     hasPreviousPage: false,
     loading: false,
   },
+  reducers: {
+    changePage: (state, action) => {
+      state.page = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchEvents.pending, handlePending)
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.loading = false;
-        state.nameUser = null;
         state.items = action.payload.data;
 
         state.page = action.payload.page;
@@ -66,5 +68,7 @@ const eventsSlice = createSlice({
       .addCase(registerMember.rejected, handleRejected);
   },
 });
+
+export const { changePage } = eventsSlice.actions;
 
 export default eventsSlice.reducer;

@@ -2,15 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const filtersSlice = createSlice({
   name: 'filters',
-  initialState: { name: '' },
+  initialState: { name: '', sortBy: 'title', sortOrder: 'aes' },
   reducers: {
     filterMembers(state, action) {
-      console.log(action.payload);
       state.name = action.payload;
+    },
+    changeSortBy(state, action) {
+      state.sortBy = action.payload;
+    },
+    changeSortOrder(state, action) {
+      state.sortOrder = action.payload;
     },
   },
 });
 
-export const { filterMembers } = filtersSlice.actions;
+export const { filterMembers, changeSortBy, changeSortOrder } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

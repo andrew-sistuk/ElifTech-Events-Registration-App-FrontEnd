@@ -1,0 +1,18 @@
+.sort {
+  display: flex;
+  gap: 23px;
+}
+
+.filter-tranding {
+  font-family: 'Poetsen One', sans-serif;
+  font-size: 14px;
+  margin: 0 0 24px 0;
+  width: 150px;
+  padding: 5px 6px;
+  border-radius: 10px;
+  text-align: start;
+  outline: transparent;
+  color: var(--main-font-color);
+  border-color: var(--second-color);
+  background: rgba(0, 0, 0, 0.3);
+}

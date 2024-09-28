@@ -1,6 +1,7 @@
 .pages {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -10,4 +11,9 @@
   outline: transparent;
   border: none;
   color: var(--second-color);
+}
+
+.active {
+  transform: scale(1.05);
+  text-decoration: underline;
 }
