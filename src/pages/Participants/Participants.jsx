@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import Message from '../../components/Message/Message.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import { selectEventsLoading } from '../../myRedux/events/selectors.js';
+import { SearchBox } from '../../components/SearchBox/SearchBox.jsx';
 
 function Participants() {
   const loading = useSelector(selectEventsLoading);
@@ -21,6 +22,7 @@ function Participants() {
   return (
     <section className={clsx(css.participants, 'container')}>
       <h2 className="visually-hidden">Participants</h2>
+      <SearchBox />
       <Members />
       <Message />
       <Loader loading={loading} />
